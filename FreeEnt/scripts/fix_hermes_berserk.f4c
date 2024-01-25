@@ -1,0 +1,20 @@
+msfpatch {
+    .addr $03ae81
+        jsr $_FixTargetAllHermes
+    
+    .addr $03fee7
+    FixTargetAllHermes:
+        lda #$04          // Berserked status bit
+        ldx #$03
+    %StatusLoop:
+        cmp $2683,x       // Actor status effects
+        beq $+NoAllTarget
+        dex
+        bpl $-StatusLoop
+        lda $1802         // Current battle background
+        bit #$10          // Zeromus battle background, handles Black Hole with berserk queued.
+        bne $+NoAllTarget
+        lda $26d2         // Current actor subcommand. What we wrote over.
+    %NoAllTarget:
+        rts
+}
