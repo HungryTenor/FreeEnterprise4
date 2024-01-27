@@ -185,6 +185,7 @@ F4C_FILES = '''
     scripts/blank_textbox_fix.f4c
     scripts/cycle_party_leader.f4c
     scripts/item_delivery_quantity.f4c
+    scripts/fix_hermes_berserk.f4c
 '''
 
 BINARY_PATCHES = {

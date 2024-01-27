@@ -1,0 +1,15 @@
+msfpatch {
+    .addr $03ae81
+        jsr $_FixTargetSwoonedHermes
+    
+    .addr $03fee7
+    FixTargetSwoonedHermes:
+        lda $26d1
+        cmp #$c2
+        bne $+NotLifeAll
+        lda $26d2
+        rts
+    %NotLifeAll:
+        tya
+        rts
+}
